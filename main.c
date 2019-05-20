@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarthel <abarthel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 17:18:53 by abarthel          #+#    #+#             */
-/*   Updated: 2019/05/20 17:38:22 by abarthel         ###   ########.fr       */
+/*   Created: 2019/05/20 11:43:46 by abarthel          #+#    #+#             */
+/*   Updated: 2019/05/20 17:49:40 by abarthel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <limits.h>
+#include "get_next_line.h"
 
-# define BUFF_SIZE 1025
+//__attribute((destructor)) void	end(void);
 
-int	get_next_line(const int fd, char **line);
+int main(int argc, char **argv)
+{
+	int ret;
+	int		fd;
+	char	*ptr;
+	(void)argc;
 
-#endif
+	fd = open(argv[1], O_RDONLY);
+	while ((ret = get_next_line(fd, &ptr)) > 0)
+		printf("%d,%s\n",ret, ptr);
+	close(fd);
+	return (0);
+}
+
+//void	end(void)
+//{
+//	while(1);
+//}

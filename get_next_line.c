@@ -6,15 +6,16 @@
 /*   By: abarthel <abarthel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 12:01:41 by abarthel          #+#    #+#             */
-/*   Updated: 2019/05/20 13:40:52 by abarthel         ###   ########.fr       */
+/*   Updated: 2019/05/20 17:57:15 by abarthel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 #include "get_next_line.h"
-#include <stdio.h>
 
-static t_list	*lst_select(int fd)
+#define CHR_SRCH '\n'
+
+static inline t_list	*lst_select(int fd)
 {
 	static t_list	*lst;
 	t_list			*fd_lst;
@@ -35,35 +36,36 @@ static t_list	*lst_select(int fd)
 	return (fd_lst);
 }
 
-static int		feedline(t_list *lst, int ret, char **line, int has_chr)
+static inline int		feedline(t_list *lst, int ret, char **line, int has_chr)
 {
 	char	*location;
 	char	*tmp;
 
 	if (has_chr || (!ret && ft_isempty(lst->content)))
 	{
-		*line = ft_strsub(lst->content, 0, ft_strclen(lst->content, '\n'));
+		*line = ft_strsub(lst->content, 0, ft_strclen(lst->content, CHR_SRCH));
 		if (!ret && ft_isempty(lst->content))
 		{
 			ft_strclr(lst->content);
 			return (0);
 		}
 		tmp = lst->content;
-		location = ft_strchr(lst->content, '\n') + 1;
+		location = ft_strchr(lst->content, CHR_SRCH) + 1;
 		lst->content = ft_strndup(location, ft_strlen(location));
 		ft_memdel((void**)&tmp);
 	}
 	return (1);
 }
 
-static int		readl(t_list *lst, int fd, char **line)
+static inline int		readl(t_list *lst, int fd, char **line)
 {
 	int		ret;
 	int		has_chr;
 	char	buffer[BUFF_SIZE + 1];
 	char	*tmp;
 
-	while (!(has_chr = ft_chrsearch(lst->content, '\n')))
+	ret = 1;
+	while (!(has_chr = ft_chrsearch(lst->content, CHR_SRCH)))
 	{
 		ft_bzero(buffer, BUFF_SIZE + 1);
 		if ((ret = read(fd, buffer, BUFF_SIZE)) < 0)
@@ -81,7 +83,7 @@ static int		readl(t_list *lst, int fd, char **line)
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int						get_next_line(const int fd, char **line)
 {
 	int		ret;
 	int		isempty;
