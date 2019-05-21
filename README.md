@@ -38,7 +38,7 @@ The end of line character can be set by modifying `#define CHR_SRCH '\n'` to the
 
 ---
 
-##Usage
+## Usage
 
 - Clone repository
 
