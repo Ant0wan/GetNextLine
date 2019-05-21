@@ -6,7 +6,7 @@
 /*   By: abarthel <abarthel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 11:43:46 by abarthel          #+#    #+#             */
-/*   Updated: 2019/05/21 10:09:09 by abarthel         ###   ########.fr       */
+/*   Updated: 2019/05/21 10:41:15 by abarthel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <limits.h>
 #include "get_next_line.h"
 
-__attribute((destructor)) void	end(void);
+//__attribute((destructor)) void	end(void);
 
 int main(int argc, char **argv)
 {
@@ -36,7 +36,4 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-void	end(void)
-{
-	while(1);
-}
+//void	end(void){ while(1); }
