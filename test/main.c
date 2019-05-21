@@ -6,7 +6,7 @@
 /*   By: abarthel <abarthel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 11:43:46 by abarthel          #+#    #+#             */
-/*   Updated: 2019/05/21 10:41:15 by abarthel         ###   ########.fr       */
+/*   Updated: 2019/05/21 10:45:44 by abarthel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	while ((ret = get_next_line(fd, &ptr)) > 0)
 	{
-		if (ptr){free(ptr);}
 		printf("%d,%s\n", ret, ptr);
+		if (ptr){free(ptr);}
 	}
 	close(fd);
 	return (0);

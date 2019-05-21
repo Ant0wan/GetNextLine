@@ -27,8 +27,8 @@ Calling `get_next_line` in a loop will then allow a program to read on a file de
 ```C
 while ((ret = get_next_line(fd, &ptr)) > 0)
 {
-	if (ptr){free(ptr);}
 	printf("%d,%s\n", ret, ptr);
+	if (ptr){free(ptr);}
 }
 ```
 
