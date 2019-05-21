@@ -1,4 +1,4 @@
-# Random C [![freetime](https://i.imgur.com/8IcDLkc.png)](i.imgur.com/8IcDLkc.png)
+# Getnextline [![42](https://i.imgur.com/9NXfcit.jpg)](i.imgur.com/9NXfcit.jpg)
 
 ---
 
